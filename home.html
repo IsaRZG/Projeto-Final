@@ -1,0 +1,53 @@
+<html> 
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <style>
+            body{
+                background-color: #9afafa;
+            }
+        </style>
+    </head>
+    <body>
+       
+        <div> <b>Produtos Farmacêuticos: </b></div>
+            <br/>
+
+            <form class="row" action="create" method='POST'>
+            
+        <div class="col-auto">
+               
+                <input class="form-control" name= 'name' class='form-control col' placeholder="digite o produto" value="" style="border: solid;"/>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary" style="border: solid">Salvar</button>
+            </div>
+        </form>
+            
+        <table class="table table-hover table-striped">
+
+            {% if produtos_farmaceuticos %}
+            <thead class="table-blue">
+                <tr>
+                    <th scope="col"><b>Produto</b></th>
+                    <th scope="col"><b>Excluir</b></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for produtos in produtos_farmaceuticos: %}
+            <tr>
+                <td>{{produtos['name']}}</td>
+                <td style="display: none;" class="visually-hidden"> {{produtos['finished']}}</td>
+                <td><a href='/Deletar/{{produtos["name"]}}'><span style="color:black;"> Apagar </span> </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>    
+            {% else %}
+                <tr>
+                    <td> <b>Não há nenhum produto... </b> </td> 
+                </tr>
+            {% endif %}
+</table>
+</div>
+</body>
+</html>
